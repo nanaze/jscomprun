@@ -5,17 +5,49 @@
     >
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.github.nanaze</groupId>
+  <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+   <groupId>com.github.nanaze</groupId>
   <artifactId>jscomprun</artifactId>
   <packaging>jar</packaging>
   <version>dev</version>
   <name>JsCompRun</name>
+    
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>com.github.nanaze.jscomprun.JsCompRunner</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      </plugins>
+  </build>  
 
-  <properties>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-  </properties>
-
+ 
   <dependencies>
     <dependency>
       <groupId>com.google.javascript</groupId>
@@ -27,5 +59,8 @@
       <artifactId>guava</artifactId>
       <version>16.0.1</version>
     </dependency>
+    
   </dependencies>
+  
+  
 </project>
