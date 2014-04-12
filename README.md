@@ -5,3 +5,9 @@ This is a tool that uses
 to take Closure-style sources and order them, optionally running them on Rhino/V8/etc.
 
 It isn't done.
+
+To build the standalone jar:
+
+<pre>
+mvn clean compile assembly:single
+</pre>
