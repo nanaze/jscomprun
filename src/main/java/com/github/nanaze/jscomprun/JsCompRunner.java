@@ -56,7 +56,7 @@ class JsCompRunner {
 			ErrorManager errorManager = new LoggerErrorManager(logger);
 			JsFileParser jsFileParser = new JsFileParser(errorManager);
 			jsFileParser.setIncludeGoogBase(true);
-			
+
 			DependencyInfo dependencyInfo = jsFileParser.parseFile(path, null);
 
 			dependencyInfoList.add(dependencyInfo);
@@ -71,39 +71,41 @@ class JsCompRunner {
 
 		SortedDependencies<DependencyInfo> sortedDependencies = new SortedDependencies<DependencyInfo>(
 				dependencyInfoList);
-		
+
 		Preconditions.checkState(
 				flags.entryPoints != null && flags.entryPoints.size() > 0,
 				"One or more entry points must be specified.");
-		
+
 		List<DependencyInfo> entryPointInputs = Lists.newArrayList();
 		for (String entryPoint : flags.entryPoints) {
 			DependencyInfo input = sortedDependencies
 					.getInputProviding(entryPoint);
 			entryPointInputs.add(input);
 		}
-		
+
 		logger.info("Printing source file paths to stderr.");
 		List<String> scriptPaths = Lists.newArrayList();
-		for (DependencyInfo dependency : sortedDependencies.getSortedDependenciesOf(entryPointInputs)) {
+		for (DependencyInfo dependency : sortedDependencies
+				.getSortedDependenciesOf(entryPointInputs)) {
 			String path = dependency.getName();
 			System.out.println(path);
 			scriptPaths.add(path);
 		}
-		
+
 		runClosureScripts(scriptPaths);
 	}
 
-	private static void runClosureScripts(List<String> scriptPaths) throws IOException {
+	private static void runClosureScripts(List<String> scriptPaths)
+			throws IOException {
 		logger.info("Running scripts in Rhino...");
-		
+
 		Context context = Context.enter();
-        Scriptable scope = context.initStandardObjects();
-        
-        for (String path : scriptPaths) {
-        	FileReader reader = new FileReader(path);
-        	context.evaluateReader(scope, reader, path, 1, null);
-        	reader.close();
-        }
+		Scriptable scope = context.initStandardObjects();
+
+		for (String path : scriptPaths) {
+			FileReader reader = new FileReader(path);
+			context.evaluateReader(scope, reader, path, 1, null);
+			reader.close();
+		}
 	}
 }
