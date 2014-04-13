@@ -2,9 +2,13 @@
 
 This is a tool that uses
 [JSCompiler/Closure Compiler](closure-compiler.googlecode.com) 
-to take Closure-style sources and order them, optionally running them on Rhino/V8/etc.
+to take Closure-style sources and order them, optionally running them on Rhino.
 
-It isn't done.
+Usage:
+
+path/to/jscomprun-dev-jar-with-dependencies.jar --entry_point foo.bar.providedEntryPoint script1.js script2.js ...
+
+## Building
 
 To build the standalone jar:
 

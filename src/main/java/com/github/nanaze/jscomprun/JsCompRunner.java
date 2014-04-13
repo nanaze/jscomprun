@@ -140,8 +140,8 @@ class JsCompRunner {
 		logger.info("Running scripts in Rhino...");
 
 		Context context = Context.enter();
-
 		Scriptable scope = context.initStandardObjects();
+
 		for (String path : scriptPaths) {
 			FileReader reader = new FileReader(path);
 			context.evaluateReader(scope, reader, path, 1, null);
