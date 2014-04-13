@@ -65,6 +65,10 @@
     <dependency>
       <groupId>org.mozilla</groupId>
       <artifactId>rhino</artifactId>
+      <!--
+      RC4 is not working for JavaAdapters. Must use RC3.
+      https://groups.google.com/forum/#!topic/mozilla-rhino/s1R791wF270
+      -->
       <version>1.7R3</version>
     </dependency>
   </dependencies>
