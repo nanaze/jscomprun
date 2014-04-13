@@ -21,6 +21,9 @@ Those changes are in progress.
 Also, any code that makes assumptions about the environment that are not present
 in Rhino (the DOM is present, in the global scope, for example) will fail.
 
+I am making prototype changes to closure in this fork:
+https://github.com/nanaze/closure-rhino-fork
+
 ## Usage:
 
 <pre>
